@@ -7,14 +7,21 @@ class CustomTextFormField extends StatelessWidget {
     Key? key,
     required this.title,
     required this.label,
+    required this.controller,
     this.maxLines = 1,
+    this.validator,
   }) : super(key: key);
+
   final String title;
   final Widget label;
+  final TextEditingController controller;
   final int maxLines;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      validator: validator,
       decoration: InputDecoration(
         isDense: true,
         contentPadding:
@@ -45,7 +52,6 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: AppColors.white,
         filled: true,
       ),
-      // style: const TextStyle(fontSize: 20, color: AppColors.primaryColor),
       maxLines: maxLines,
     );
   }
